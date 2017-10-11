@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './header/Header'
-import {Route} from 'react-router'
-import {connect} from 'react-redux'
+import { Route, Switch } from 'react-router'
+import { connect } from 'react-redux'
 
 const Post = () => <h1>Home</h1>
 const Post1 = () => <h1>React</h1>
@@ -19,12 +19,14 @@ class App extends Component {
   render() {
     return (
       <div>
-      <Header/>
-      <Route path='/' component={Post}/>
-      {this.props.categories && this.props.categories.map( (cat,i) => {
-        console.log(cat.path)
-        return <Route path={`/${cat.path}`} component={array[i]} key={i}/>
-      })}   
+        <Header />
+        <Switch>
+          <Route path='/' component={Post} />
+          {this.props.categories && this.props.categories.map((cat, i) => {
+            console.log(cat.path)
+            return <Route path={`/${cat.path}`} component={array[i]} key={i} />
+          })}
+        </Switch>
       </div>
     );
   }
